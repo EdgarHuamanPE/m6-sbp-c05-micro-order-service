@@ -97,7 +97,6 @@ class OrderServiceTest {
 
     @Test
     void findAll() {
-        // ===== ENTITIES (BD) =====
         OrderEntity order1 = OrderEntity.builder()
                 .id(1L)
                 .userId(10L)
@@ -117,14 +116,12 @@ class OrderServiceTest {
         when(orderRepository.findAll())
                 .thenReturn(List.of(order1, order2));
 
-        // ===== USERS =====
         when(userClient.getUserById(10L))
                 .thenReturn(User.builder().id(10L).name("Juan").build());
 
         when(userClient.getUserById(20L))
                 .thenReturn(User.builder().id(20L).name("Maria").build());
 
-        // ===== PRODUCTS =====
         when(productClient.getProductById(100L))
                 .thenReturn(Product.builder().id(100L).name("Laptop").price(BigDecimal.TEN).build());
 

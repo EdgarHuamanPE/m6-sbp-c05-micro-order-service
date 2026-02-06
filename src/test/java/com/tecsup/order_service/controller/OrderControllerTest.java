@@ -133,7 +133,6 @@ class OrderControllerTest {
         when(orderService.findAll())
                 .thenReturn(List.of(order1, order2));
 
-        // ===== HTTP =====
         mockMvc.perform(get("/api/orders"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
@@ -195,9 +194,7 @@ class OrderControllerTest {
 
     @Test
     void deleteOrder_flow() throws Exception {
-
         Long ID = 1L;
-
         doNothing().when(orderService).deleteOrder(ID);
 
         mockMvc.perform(delete("/api/orders/{id}", ID))
@@ -221,5 +218,4 @@ class OrderControllerTest {
 
         verify(orderService, times(2)).deleteOrder(ID);
     }
-
 }
