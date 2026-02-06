@@ -1,0 +1,38 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/orderdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/dev
+    baseline-on-migrate: true
+    validate-on-migrate: true
+
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        instances:
+          userService:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            failureRateThreshold: 50
+            waitDurationInOpenState: 10s
+            permittedNumberOfCallsInHalfOpenState: 3
+    config:
+      enabled: false
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    enabled: true
+    show-details: always
+
