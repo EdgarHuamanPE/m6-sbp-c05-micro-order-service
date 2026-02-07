@@ -175,6 +175,9 @@
                     <url>jdbc:postgresql://localhost:5434/orderdb</url>
                     <user>postgres</user>
                     <password>postgres</password>
+                    <locations>
+                        <location>classpath:db/migration/dev</location>
+                    </locations>
                     <schemas>
                         <schema>public</schema>
                     </schemas>
