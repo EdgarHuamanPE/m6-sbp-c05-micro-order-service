@@ -4,7 +4,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: local
 
   application:
     name: order-service
@@ -17,8 +17,10 @@ management:
 
 user:
   service:
-    url: ${USER_SERVICE_URL}
+    #url: ${USER_SERVICE_URL}
+    url: http://localhost:8080
 
 product:
   service:
-    url: ${PRODUCT_SERVICE_URL}
+    #url: ${PRODUCT_SERVICE_URL}
+    url: http://localhost:8080
